@@ -2,5 +2,5 @@ class game
 {
 public:
 	game();
-	void test();
+	char levelChoice();
 };
