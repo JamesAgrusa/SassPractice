@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <ctime>
 #include "game.h"
 #include "Kitchen.h"
 #include "LivingRoom.h"
@@ -12,7 +14,7 @@ game::game()
 
 }
 
-char game::levelChoice()
+char game::roomChoice()
 {
 	char choice;
 	Kitchen kitchen;
@@ -20,9 +22,7 @@ char game::levelChoice()
 	Bathroom bathroom;
 	LaundryRoom laundryRoom;
 
-	cout << "" << endl;
-	cout << "Here, our humble adventure beings." << endl;
-	cout << "First things first, which room do you want to look in?\nA)Kitchen\nB)Living Room\nC)Bathroom\nD)Laundry Room" << endl;
+	cout << "Which room do you want to look in?\nA)Kitchen\nB)Living Room\nC)Bathroom\nD)Laundry Room" << endl;
 	cout << "" << endl;
 	cin >> choice;
 	cout << "You have picked " << choice << " lets head that way" << endl;
@@ -45,4 +45,44 @@ char game::levelChoice()
 	}
 
 	return choice;
+}
+
+void game::roomSearch()
+{
+	string itemFound;
+	srand((unsigned int)time(NULL));
+	string item[] = { "phone", "keys", "wallet" };
+	itemFound = item[rand() % 3];
+	cout << "You found your " << itemFound << " !" << endl;
+	if (itemFound == "phone")
+	{
+		string item[] = { "keys", "wallet" };
+		itemFound = item[rand() % 2];
+		cout << "you found your " << itemFound << " !" << endl;
+		if (itemFound == "keys")
+		{
+			cout << "you found your wallet!" << endl;
+		}
+	}
+	if (itemFound == "keys")
+	{
+		string item[] = { "phone", "wallet" };
+		itemFound = item[rand() % 2];
+		cout << "you found your " << itemFound << " !" << endl;
+		if (itemFound == "phone")
+		{
+			cout << "you found your phone!" << endl;
+		}
+	}
+	if (itemFound == "wallet")
+	{
+		string item[] = { "keys", "phone" };
+		itemFound = item[rand() % 2];
+		cout << "you found your " << itemFound << " !" << endl;
+		if (itemFound == "phone")
+		{
+			cout << "you found your keys !" << endl;
+		}
+	}
+	roomChoice();
 }
